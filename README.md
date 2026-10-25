@@ -47,7 +47,9 @@ writes a self-describing bundle:
 ├── run_manifest.json
 ├── tables/gsva_results.csv
 ├── figures/gsva_heatmap.png
-└── logs/gsva_run_summary.txt
+└── logs/
+    ├── gsva_run_summary.txt
+    └── sessionInfo.txt
 ```
 
 ## Container status

@@ -20,6 +20,7 @@ for artifact in \
   tables/gsva_results.csv \
   figures/gsva_heatmap.png \
   logs/gsva_run_summary.txt \
+  logs/sessionInfo.txt \
   RUN_METADATA.md \
   run_manifest.json; do
   test -s "${output_dir}/${artifact}" || { printf 'Missing smoke artifact: %s\n' "${artifact}" >&2; exit 1; }

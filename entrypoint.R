@@ -49,6 +49,7 @@ write_result_bundle <- function(output_dir, arguments) {
       stop("Could not place result artifact: ", artifacts$role[[index]])
     }
   }
+  capture.output(sessionInfo(), file = file.path(output_dir, "logs", "sessionInfo.txt"))
 
   input_options <- c("--normalized_data", "--sample_metadata", "--pathways_database")
   input_paths <- vapply(input_options, option_value, character(1L), values = arguments)
@@ -110,9 +111,12 @@ write_result_bundle <- function(output_dir, arguments) {
     application_revision = application_revision,
     canonical_omix_source_commit = omix_source_commit,
     base_image = base_image,
-    artifacts = lapply(seq_len(nrow(artifacts)), function(index) {
-      list(role = artifacts$role[[index]], path = artifacts$destination[[index]])
-    }),
+    artifacts = c(
+      lapply(seq_len(nrow(artifacts)), function(index) {
+        list(role = artifacts$role[[index]], path = artifacts$destination[[index]])
+      }),
+      list(list(role = "R session information", path = "logs/sessionInfo.txt"))
+    ),
     input_artifacts = lapply(seq_len(nrow(input_manifest)), function(index) {
       list(
         option = input_manifest$option[[index]],
