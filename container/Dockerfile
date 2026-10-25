@@ -18,13 +18,16 @@ LABEL org.opencontainers.image.title="gsva-analysis" \
       org.opencontainers.image.description="Portable GSVA analysis component derived from OMIX GSVA" \
       org.opencontainers.image.source="https://github.com/NIDAP-Community/gsva-analysis" \
       org.opencontainers.image.revision="${VCS_REF}" \
+      org.opencontainers.image.base.name="ghcr.io/nidap-community/omix-r-pathway@sha256:25ad9f50df5a4d7f70a7e3debed13f8d5c9b07cbc46d57fdf5c3cf4f2e767ddc" \
       org.opencontainers.image.created="${BUILD_DATE}"
 
 RUN mkdir -p /data /output \
     && useradd --create-home --uid 10001 --shell /usr/sbin/nologin gsva \
     && chown --recursive gsva:gsva /app /data /output
 
-ENV GSVA_ANALYSIS_IMAGE_REVISION=${VCS_REF}
+ENV GSVA_ANALYSIS_IMAGE_REVISION=${VCS_REF} \
+    GSVA_ANALYSIS_OMIX_SOURCE_COMMIT=0ea6223129de6d98d69469027c19fa1887b59f6a \
+    GSVA_ANALYSIS_BASE_IMAGE=ghcr.io/nidap-community/omix-r-pathway@sha256:25ad9f50df5a4d7f70a7e3debed13f8d5c9b07cbc46d57fdf5c3cf4f2e767ddc
 USER gsva
 ENTRYPOINT ["Rscript", "--vanilla", "/app/entrypoint.R"]
 CMD ["--help"]

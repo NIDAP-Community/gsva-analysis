@@ -38,13 +38,23 @@ Rscript entrypoint.R \
 ```
 
 The canonical interface and output definitions are in
-[schemas/interface.yml](schemas/interface.yml). The primary outputs are
-`gsva_results.csv`, `gsva_heatmap.png`, and `gsva_run_summary.txt`.
+[schemas/interface.yml](schemas/interface.yml). A successful application run
+writes a self-describing bundle:
+
+```text
+<output_dir>/
+├── RUN_METADATA.md
+├── run_manifest.json
+├── tables/gsva_results.csv
+├── figures/gsva_heatmap.png
+└── logs/gsva_run_summary.txt
+```
 
 ## Container status
 
 The application image will build from the pinned OMIX `r-pathway` runtime for
-`linux/amd64`. It will use the standard read-only `/data` and writable
+`linux/amd64`. The container helper requests that platform explicitly (with
+Apple Silicon emulation when necessary). It uses the standard read-only `/data` and writable
 `/output` mount contract. Image publication is intentionally deferred until
 container, source-parity, representative-data, and OncoChat acceptance gates
 have passed.

@@ -16,6 +16,7 @@ data_dir="$(CDPATH= cd -- "${data_dir}" && pwd -P)"
 output_dir="$(CDPATH= cd -- "${output_dir}" && pwd -P)"
 
 exec docker run --rm \
+  --platform "${DOCKER_PLATFORM:-linux/amd64}" \
   --user "$(id -u):$(id -g)" \
   --mount "type=bind,src=${data_dir},dst=/data,readonly" \
   --mount "type=bind,src=${output_dir},dst=/output" \

@@ -16,7 +16,14 @@ output_dir="${smoke_root}/output"
   --collections_to_include 'H: hallmark gene sets' \
   --output_dir /output
 
-for artifact in gsva_results.csv gsva_heatmap.png gsva_run_summary.txt; do
+for artifact in \
+  tables/gsva_results.csv \
+  figures/gsva_heatmap.png \
+  logs/gsva_run_summary.txt \
+  RUN_METADATA.md \
+  run_manifest.json; do
   test -s "${output_dir}/${artifact}" || { printf 'Missing smoke artifact: %s\n' "${artifact}" >&2; exit 1; }
 done
+grep -q 'Completed successfully.' "${output_dir}/RUN_METADATA.md"
+grep -q '"status": "completed"' "${output_dir}/run_manifest.json"
 printf 'GSVA container smoke test passed: %s\n' "${output_dir}"
