@@ -1,0 +1,38 @@
+name: Validate GSVA application
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out application source
+        uses: actions/checkout@v4
+
+      - name: Check out pinned canonical OMIX source
+        uses: actions/checkout@v4
+        with:
+          repository: NIDAP-Community/OMIX
+          ref: 0ea6223129de6d98d69469027c19fa1887b59f6a
+          path: canonical-omix
+
+      - name: Verify pinned scientific export
+        run: |
+          set -euo pipefail
+          cmp R/GSVA.R canonical-omix/modules/OMIX-GSVA/R/GSVA.R
+          cmp scripts/run_gsva.R canonical-omix/modules/OMIX-GSVA/scripts/run_gsva.R
+          cmp schemas/interface.yml canonical-omix/modules/OMIX-GSVA/schemas/interface.yml
+          cmp module.yml canonical-omix/modules/OMIX-GSVA/module.yml
+
+      - name: Build linux/amd64 application image
+        run: container/build_docker.sh gsva-analysis:ci
+
+      - name: Run container smoke test
+        run: container/smoke_test.sh gsva-analysis:ci
