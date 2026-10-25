@@ -1,0 +1,9 @@
+.git/
+results/
+output/
+renv/library/
+renv/staging/
+.Rhistory
+.RData
+.Ruserdata
+.DS_Store

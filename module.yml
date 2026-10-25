@@ -1,0 +1,14 @@
+name: omix-gsva
+display_name: OMIX GSVA
+version: 0.3.0
+interface_version: 2
+module_type: pathway
+status: review
+owner: OMIX Team
+description: Calculate sample-level pathway enrichment scores from normalized continuous expression.
+data_policy: No study data or generated results are committed. Callers supply explicit normalized-expression, sample-metadata, and gene-set membership paths.
+runtime_profile: r-pathway
+entrypoint: scripts/run_gsva.R
+deployment_adapters:
+  - platform: code-ocean
+    repository: https://github.com/NIDAP-Community/OMIX-GSVA
