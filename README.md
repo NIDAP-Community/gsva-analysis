@@ -5,11 +5,6 @@ enrichment from normalized continuous expression. It is derived from the
 canonical [OMIX GSVA](https://github.com/NIDAP-Community/OMIX/tree/main/modules/OMIX-GSVA)
 module at a pinned source commit; see [OMIX_MODULE_SOURCE.md](OMIX_MODULE_SOURCE.md).
 
-## Status
-
-This repository is an unpublished local derivation. It is not yet an
-OncoChat-enabled analysis or a published OCI image.
-
 ## Input contract
 
 The canonical GSVA interface requires three tables:
@@ -19,10 +14,8 @@ The canonical GSVA interface requires three tables:
 - pathway membership with `collection`, `gene_set_name`, `gene_symbol`, and
   `species` columns.
 
-Raw integer counts are not valid GSVA input. For OncoChat, the stage-in layer
-will materialize a normalized matrix from the approved `counts_tpm` database
-relation and a membership table from the approved pathway catalog; users do
-not provide arbitrary file paths.
+Raw integer counts are not valid GSVA input. Supply a normalized matrix and a
+compatible pathway-membership table.
 
 ## Local CLI
 
@@ -56,7 +49,5 @@ writes a self-describing bundle:
 
 The application image will build from the pinned OMIX `r-pathway` runtime for
 `linux/amd64`. The container helper requests that platform explicitly (with
-Apple Silicon emulation when necessary). It uses the standard read-only `/data` and writable
-`/output` mount contract. Image publication is intentionally deferred until
-container, source-parity, representative-data, and OncoChat acceptance gates
-have passed.
+Apple Silicon emulation when necessary). It uses a read-only `/data` and
+writable `/output` mount contract.
