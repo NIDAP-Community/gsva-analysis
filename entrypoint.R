@@ -81,7 +81,7 @@ write_result_bundle <- function(output_dir, arguments) {
     "",
     paste("- Application revision:", application_revision),
     paste("- Canonical OMIX source commit:", omix_source_commit),
-    "- Canonical OMIX module: OMIX-GSVA (version 0.3.0; interface 2)",
+    "- Canonical OMIX module: OMIX-GSVA (version 1.0.0; interface 2)",
     paste("- Pinned base image:", base_image),
     paste("- Completed UTC:", timestamp),
     "",

@@ -9,13 +9,19 @@ module at a pinned source commit; see [OMIX_MODULE_SOURCE.md](OMIX_MODULE_SOURCE
 
 The canonical GSVA interface requires three tables:
 
-- normalized continuous gene-by-sample expression, with `Gene` by default;
+- normalized continuous gene-by-sample expression, where `--gene_column auto`
+  selects `Gene` and then `GeneName`;
 - sample metadata, with `Sample` by default; and
 - pathway membership with `collection`, `gene_set_name`, `gene_symbol`, and
   `species` columns.
 
 Raw integer counts are not valid GSVA input. Supply a normalized matrix and a
 compatible pathway-membership table.
+
+With `--collections_to_include auto` (the default), GSVA selects
+`H: hallmark gene sets` for a Human pathway database and
+`MH: orthology-mapped hallmark gene sets` for a Mouse pathway database.
+Explicit collection names are preserved unchanged.
 
 ## Local CLI
 

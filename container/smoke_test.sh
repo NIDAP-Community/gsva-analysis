@@ -11,9 +11,7 @@ output_dir="${smoke_root}/output"
   --normalized_data /data/normalized_expression.tsv \
   --sample_metadata /data/sample_metadata.tsv \
   --pathways_database /data/pathway_membership.tsv \
-  --gene_column Gene \
   --sample_name_column Sample \
-  --collections_to_include 'H: hallmark gene sets' \
   --output_dir /output
 
 for artifact in \

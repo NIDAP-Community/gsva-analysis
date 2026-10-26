@@ -23,9 +23,7 @@ mkdir -p "${canonical_output}"
   --normalized_data /data/normalized_expression.tsv \
   --sample_metadata /data/sample_metadata.tsv \
   --pathways_database /data/pathway_membership.tsv \
-  --gene_column Gene \
   --sample_name_column Sample \
-  --collections_to_include 'H: hallmark gene sets' \
   --output_dir /output
 
 docker run --rm \
@@ -40,9 +38,7 @@ docker run --rm \
   --normalized_data /data/normalized_expression.tsv \
   --sample_metadata /data/sample_metadata.tsv \
   --pathways_database /data/pathway_membership.tsv \
-  --gene_column Gene \
   --sample_name_column Sample \
-  --collections_to_include 'H: hallmark gene sets' \
   --output_dir /output
 
 cmp "${standalone_output}/tables/gsva_results.csv" "${canonical_output}/gsva_results.csv"

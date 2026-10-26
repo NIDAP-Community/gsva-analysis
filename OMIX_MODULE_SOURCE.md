@@ -6,8 +6,8 @@
 | --- | --- |
 | Canonical module | `OMIX-GSVA` |
 | Canonical path | `modules/OMIX-GSVA/` |
-| OMIX source commit | `0ea6223129de6d98d69469027c19fa1887b59f6a` |
-| Module version | `0.3.0` |
+| OMIX source commit | `79e27490a0521aa866af60ae5fa203e9e1516b42` |
+| Module version | `1.0.0` |
 | Interface version | `2` |
 | Canonical tag | Pending; no tag exists for this snapshot |
 | Runtime profile | `r-pathway` |
@@ -16,14 +16,19 @@
 
 | Canonical file | Repository copy | SHA-256 |
 | --- | --- | --- |
-| `R/GSVA.R` | `R/GSVA.R` | `2ef7ab5d3726a89676ffb6e5e6b1bc42b41c4ef59093d3754252c8035b0fa7ad` |
-| `scripts/run_gsva.R` | `scripts/run_gsva.R` | `5ed78b47ba2910d7b1b39102c4f2c2f003558e59e489265f473da7bdb09487ed` |
-| `schemas/interface.yml` | `schemas/interface.yml` | `186c7a70b6bd60321257d448bc9666badb91cebd77036af0ecaab5dc4d324c6a` |
-| `module.yml` | `module.yml` | `da9aa1676a3b2007328cef10e3f6753fda5557e6c4a1baa92aece9e38e7d0399` |
+| `R/GSVA.R` | `R/GSVA.R` | `02c80e669a7e3f964b42997f23557de90af69dbd391e342a05096923da11a818` |
+| `scripts/run_gsva.R` | `scripts/run_gsva.R` | `5fe626cdf3837820c53362f56e32d41418dd63e7dbf4128869573b9ec84ebca5` |
+| `schemas/interface.yml` | `schemas/interface.yml` | `d308b7e86b6cd9ff83a9ff508a1fe723cf42cfc89796a6c51ded72ec5cb5a15f` |
+| `module.yml` | `module.yml` | `72691f56d3b71614e2e7313ae4bcf4f3e193560b9faaedfa2e6f6a88ba47a2ae` |
 
 The scientific implementation is a pinned OMIX export. Do not edit it in this
 repository. Scientific or reusable-interface changes must be made, validated,
 and versioned in OMIX before this export is refreshed.
+
+The current export adds species-aware safe defaults: `gene_column = auto`
+selects `Gene` and then `GeneName`; `collections_to_include = auto` selects
+the Human or Mouse Hallmark collection for the selected pathway-database
+species. Existing explicit values remain valid.
 
 ## Runtime source
 

@@ -26,7 +26,7 @@ RUN mkdir -p /data /output \
     && chown --recursive gsva:gsva /app /data /output
 
 ENV GSVA_ANALYSIS_IMAGE_REVISION=${VCS_REF} \
-    GSVA_ANALYSIS_OMIX_SOURCE_COMMIT=0ea6223129de6d98d69469027c19fa1887b59f6a \
+    GSVA_ANALYSIS_OMIX_SOURCE_COMMIT=79e27490a0521aa866af60ae5fa203e9e1516b42 \
     GSVA_ANALYSIS_BASE_IMAGE=ghcr.io/nidap-community/omix-r-pathway@sha256:25ad9f50df5a4d7f70a7e3debed13f8d5c9b07cbc46d57fdf5c3cf4f2e767ddc
 USER gsva
 ENTRYPOINT ["Rscript", "--vanilla", "/app/entrypoint.R"]
