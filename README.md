@@ -53,7 +53,36 @@ writes a self-describing bundle:
 
 ## Container status
 
-The application image will build from the pinned OMIX `r-pathway` runtime for
-`linux/amd64`. The container helper requests that platform explicitly (with
-Apple Silicon emulation when necessary). It uses a read-only `/data` and
-writable `/output` mount contract.
+The published application image is available for `linux/amd64`:
+
+```text
+ghcr.io/nidap-community/gsva-analysis@sha256:c22d0fa50ea8af06e07d54fa8f03844191d5f47876e4cf72c058cba073d280f0
+```
+
+The image was built from source commit
+`d5723ac526cbb5b855701ef798a59dd44e056ade`. Automated services, including
+OncoChat, must use the digest rather than a mutable tag. The application image
+is derived from the pinned OMIX `r-pathway` runtime. The container helper
+requests `linux/amd64` explicitly (using Apple Silicon emulation when
+necessary) and mounts inputs read-only at `/data` and results read-write at
+`/output`.
+
+## Run the published container
+
+Place the three required input tables in one directory, then invoke the
+digest-pinned image. The example filenames below are conventions; the CLI
+paths may be changed, but they must remain beneath `/data`.
+
+```bash
+docker run --rm --platform linux/amd64 \
+  --mount type=bind,src=/path/to/gsva-inputs,dst=/data,readonly \
+  --mount type=bind,src=/path/to/gsva-output,dst=/output \
+  ghcr.io/nidap-community/gsva-analysis@sha256:c22d0fa50ea8af06e07d54fa8f03844191d5f47876e4cf72c058cba073d280f0 \
+  --normalized_data /data/normalized_expression.tsv \
+  --sample_metadata /data/sample_metadata.tsv \
+  --pathways_database /data/pathway_membership.tsv \
+  --output_dir /output
+```
+
+For the application-level staging, parameter, output, and provenance contract,
+see [docs/oncochat_adapter_contract.md](docs/oncochat_adapter_contract.md).

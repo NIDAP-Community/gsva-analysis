@@ -9,7 +9,7 @@
 | OMIX source commit | `79e27490a0521aa866af60ae5fa203e9e1516b42` |
 | Module version | `1.0.0` |
 | Interface version | `2` |
-| Canonical tag | Pending; no tag exists for this snapshot |
+| Canonical tag | No OMIX Git tag exists for this source snapshot. The standalone application records this exact canonical source commit and does not imply an OMIX release tag. |
 | Runtime profile | `r-pathway` |
 
 ## Imported files

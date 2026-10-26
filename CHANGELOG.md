@@ -14,5 +14,10 @@
 - Added the repository-owned root CLI, pinned shared-runtime container recipe,
   synthetic fixture, and canonical container smoke-test scaffold.
 
-No OCI image, semantic version, Git tag, or public repository has been
-published.
+- Published the validated `linux/amd64` application image as
+  `ghcr.io/nidap-community/gsva-analysis:sha-d5723ac526cb` with immutable
+  digest `sha256:c22d0fa50ea8af06e07d54fa8f03844191d5f47876e4cf72c058cba073d280f0`.
+  The image was built from application commit
+  `d5723ac526cbb5b855701ef798a59dd44e056ade`; the source, container smoke,
+  canonical-parity, and hosted validation checks passed. A semantic Git tag
+  and GitHub Release have not yet been created.
