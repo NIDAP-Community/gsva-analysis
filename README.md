@@ -5,6 +5,16 @@ enrichment from normalized continuous expression. It is derived from the
 canonical [OMIX GSVA](https://github.com/NIDAP-Community/OMIX/tree/main/modules/OMIX-GSVA)
 module at a pinned source commit; see [OMIX_MODULE_SOURCE.md](OMIX_MODULE_SOURCE.md).
 
+## Example output
+
+![Synthetic GSVA heatmap](docs/images/gsva_synthetic_heatmap.png)
+
+This heatmap is generated from the small, fully synthetic fixture in
+[`test_data/`](test_data/). It demonstrates the expected score-matrix layout
+and clustering only; its pathway labels and values are artificial and must not
+be interpreted biologically. The exact command and provenance are recorded in
+[docs/README_EXAMPLE_PROVENANCE.md](docs/README_EXAMPLE_PROVENANCE.md).
+
 ## Input contract
 
 The canonical GSVA interface requires three tables:
@@ -86,3 +96,17 @@ docker run --rm --platform linux/amd64 \
 
 For the application-level staging, parameter, output, and provenance contract,
 see [docs/oncochat_adapter_contract.md](docs/oncochat_adapter_contract.md).
+
+## Troubleshooting
+
+| Symptom | Resolution |
+| --- | --- |
+| Input is raw integer counts | GSVA requires normalized, continuous expression. Normalize upstream, then provide that matrix to `--normalized_data`. |
+| No samples are selected | Ensure values in the metadata sample-ID column exactly match expression matrix column names. Use `--sample_name_column` when the metadata identifier is not named `Sample`. |
+| No pathways are selected | Confirm the requested species and collection names occur in the pathway-membership table. With defaults, `auto` selects Human or Mouse Hallmark collections. |
+| Gene symbols do not match pathway members | Retain `--update_genes true` (the default), or provide harmonized identifiers and select the correct feature column with `--gene_column`. |
+| Apple Silicon host reports a platform warning | The published image is `linux/amd64`; Docker Desktop emulates it when necessary. Keep `--platform linux/amd64` in manual Docker commands. |
+
+For a reproducible smoke test, run
+`container/smoke_test.sh gsva-analysis:d5723ac` after building the local image
+or replace that image argument with the released digest.

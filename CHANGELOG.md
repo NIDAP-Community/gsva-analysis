@@ -2,7 +2,13 @@
 
 ## Unreleased
 
-- No unreleased changes.
+- Normalized repository-standard documentation: an explicit container contract,
+  decision log, append-only session notes, source-layout rationale, and
+  synthetic README-example provenance.
+- Added an executable container-boundary test to CI, covering CLI help and
+  rejection of a missing staged input.
+- Added a visually inspected, fully synthetic GSVA heatmap to the README and
+  user-facing troubleshooting guidance. No study data were added.
 
 ## 1.0.0 - 2026-10-26
 

@@ -37,5 +37,8 @@ jobs:
       - name: Run container smoke test
         run: container/smoke_test.sh gsva-analysis:ci
 
+      - name: Check CLI help and input-rejection paths
+        run: tests/test_container_contract.sh gsva-analysis:ci
+
       - name: Compare canonical and standalone fixture outputs
         run: container/parity_test.sh gsva-analysis:ci canonical-omix/modules/OMIX-GSVA
