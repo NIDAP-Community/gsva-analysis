@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- No unreleased changes.
+
+## 1.0.0 - 2026-10-26
+
 - Synchronized the standalone scientific export to canonical OMIX GSVA 1.0.0
   at commit `79e27490a0521aa866af60ae5fa203e9e1516b42`. This incorporates the
   canonical species-aware defaults: automatic `Gene`/`GeneName` feature-column
@@ -19,5 +23,5 @@
   digest `sha256:c22d0fa50ea8af06e07d54fa8f03844191d5f47876e4cf72c058cba073d280f0`.
   The image was built from application commit
   `d5723ac526cbb5b855701ef798a59dd44e056ade`; the source, container smoke,
-  canonical-parity, and hosted validation checks passed. A semantic Git tag
-  and GitHub Release have not yet been created.
+  canonical-parity, and hosted validation checks passed. The matching `v1.0.0`
+  Git tag and GitHub Release record the validated application source commit.
